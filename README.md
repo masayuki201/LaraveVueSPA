@@ -1,5 +1,5 @@
-##環境
-●PHP,Composer,NPMが利用可能な環境で下記環境構築を行います。
+## 環境
+●PHP、Composer、NPMが利用可能な環境で下記環境構築を行います。
 <br>
 ●Laravel Mix 5.0.1
 <br>
@@ -12,15 +12,15 @@
 ●Vue.js 2.6.14
 
 
-##環境構築
-###●クローン
+## 環境構築
+### ●クローン
 git clone https://github.com/masayuki201/LaraveVueSPA.git
 
-###●PHP側パッケージインストール
+### ●PHP側パッケージインストール
 <br>
 composer install
 
-###●.env修正
+### ●.env修正
 <br>
 .env.exampleをコピーし、.envを作成
 <br>
@@ -31,7 +31,7 @@ DBにsqliteを使用する場合の例
 <br>
 『DB_CONNECTION=sqlite』とし、他のDB情報は削除
 
-###●DB、テストデータ生成
+### ●DB、テストデータ生成
 <br>
 php artisan migrate:refresh --seed
 <br>
@@ -40,14 +40,14 @@ php artisan migrate:refresh --seed
 <br>
 php artisan key:generate   
 
-###●フロントエンドパッケージインストール
+### ●フロントエンドパッケージインストール
 <br>
 npm install
 
-###●フロントエンドビルド
+### ●フロントエンドビルド
 <br>
 npm run dev
 
-###●サーバー起動
+### ●サーバー起動
 <br>
 php artisan serve
