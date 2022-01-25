@@ -1,5 +1,5 @@
 ## 環境
-●PHP,Composer,NPMが利用可能な環境で下記環境構築を行います。
+●PHP、Composer、NPMが利用可能な環境で下記環境構築を行います。
 <br>
 ●Laravel Mix 5.0.1
 <br>
