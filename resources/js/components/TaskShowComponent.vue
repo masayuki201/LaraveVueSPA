@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-6">
+    <v-container>
+        <div class="justify-content:center">
+            <v-card class="col-sm-6">
                 <form>
                     <div class="form-group row border-bottom">
                         <label for="id" class="col-sm-3 col-form-label">No</label>
@@ -24,9 +24,9 @@
                                v-model="task.person_in_charge">
                     </div>
                 </form>
-            </div>
+            </v-card>
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
