@@ -3,13 +3,13 @@
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Content</th>
-                <th scope="col">Person In Charge</th>
-                <th scope="col">Show</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">No</th>
+                <th scope="col">タイトル</th>
+                <th scope="col">内容</th>
+                <th scope="col">担当者</th>
+                <th scope="col">詳細</th>
+                <th scope="col">編集</th>
+                <th scope="col">削除</th>
             </tr>
             </thead>
             <tbody>
@@ -20,16 +20,16 @@
                <td> {{ task.person_in_charge }}</td>
                <td>
                    <router-link v-bind:to="{name: 'task.show', params: {taskId: task.id }}">
-                       <button class="btn btn-primary">Show</button>
+                       <button class="btn btn-primary">詳細</button>
                    </router-link>
                </td>
                <td>
                    <router-link v-bind:to="{name: 'task.edit', params: {taskId: task.id }}">
-                       <button class="btn btn-success">Edit</button>
+                       <button class="btn btn-success">編集</button>
                    </router-link>
                </td>
                <td>
-                   <button class="btn btn-danger" v-on:click="deleteTask(task.id)">Delete</button>
+                   <button class="btn btn-danger" v-on:click="deleteTask(task.id)">削除</button>
                </td>
            </tr>
             </tbody>
