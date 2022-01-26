@@ -11,14 +11,26 @@
 
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-    </head>
- <body>
- <div id="app">
-     <header-component></header-component>
 
-     <router-view></router-view>
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <header-component></header-component>
+
+        <router-view></router-view>
+
+        <footer-component></footer-component>
+    </v-app>
 </div>
- <!-- Scripts -->
- <script src="{{ mix('/js/app.js') }}" defer></script>
- </body>
- </html>
+<!-- Scripts -->
+<script src="{{ mix('/js/app.js') }}" defer></script>
+
+{{-- <script>--}}
+{{--     new Vue({--}}
+{{--         el: '#app',--}}
+{{--         vuetify: new Vuetify(),--}}
+{{--     })--}}
+{{-- </script>--}}
+</body>
+</html>
