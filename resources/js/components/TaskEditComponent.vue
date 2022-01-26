@@ -1,29 +1,36 @@
 <template>
-  <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-sm-6">
+  <v-container>
+      <div class="justify-content-center">
               <form v-on:submit.prevent="submit">
-                  <div class="form-group row">
-                      <label for="id" class="col-form-label">ID</label>
+                  <v-card class="col-sm-6">
+                  <div class="form-group row border-bottom">
+                      <label for="id" class="col-sm-3 col-form-label">No</label>
                       <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="task.id">
                   </div>
-                  <div class="form-group row">
-                      <label for="title" class="col-form-label">Title</label>
+                  <div class="form-group row border-bottom">
+                      <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                       <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
                   </div>
-                  <div class="form-group row">
-                      <label for="content" class="col-form-label">Content</label>
+                  <div class="form-group row border-bottom">
+                      <label for="content" class="col-sm-3 col-form-label">内容</label>
                       <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content">
                   </div>
-                  <div class="form-group row">
-                      <label for="person-in-charge" class="col-form-label">Person In Charge</label>
+                  <div class="form-group row border-bottom">
+                      <label for="person-in-charge" class="col-sm-3 col-form-label">担当者</label>
                       <input type="text" class="col-sm-9 form-control" id="person-in-charge" v-model="task.person_in_charge">
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  </v-card>
+                  <v-btn
+                      type="submit"
+                      class="btn"
+                      color="#F57C00"
+                      elevation="10"
+                  >
+                      Submit
+                  </v-btn>
               </form>
-          </div>
       </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -55,3 +62,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.btn{
+    margin: 10px 0px 0px 0px;
+}
+</style>
