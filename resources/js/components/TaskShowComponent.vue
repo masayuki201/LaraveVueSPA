@@ -1,25 +1,25 @@
 <template>
-    <div class="containar">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <form>
                     <div class="form-group row border-bottom">
-                        <label for="id" class="col-sm-3 col-form-label">ID</label>
+                        <label for="id" class="col-sm-3 col-form-label">No</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id"
                                v-model="task.id">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="title" class="col-sm-3 col-form-label">Title</label>
+                        <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="title"
                                v-model="task.title">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="content" class="col-sm-3 col-form-label">Content</label>
+                        <label for="content" class="col-sm-3 col-form-label">内容</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="content"
                                v-model="task.content">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
+                        <label for="person-in-charge" class="col-sm-3 col-form-label">担当者</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="person-in-charge"
                                v-model="task.person_in_charge">
                     </div>
