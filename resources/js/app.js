@@ -1,9 +1,13 @@
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
 import TaskListComponent from "./components/TaskListComponent";
 import TaskCreateComponent from "./components/TaskCreateComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
 import TaskEditComponent from "./components/TaskEditComponent";
+import FooterComponent from "./components/FooterComponent";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -15,6 +19,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.use(Vuetify);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -43,7 +48,7 @@ const router = new VueRouter({
             props: true
         },
     ]
- });
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -58,6 +63,7 @@ const router = new VueRouter({
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('header-component', HeaderComponent);
+Vue.component('footer-component', FooterComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -67,5 +73,10 @@ Vue.component('header-component', HeaderComponent);
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    vuetify: new Vuetify(),
 });
+
+const opts = {}
+
+export default new Vuetify(opts)
