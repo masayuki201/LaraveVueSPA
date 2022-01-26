@@ -1,9 +1,8 @@
 <template>
     <v-card>
         <v-toolbar
-            class="text-center"
-            cols="12"
-            color="blue lighten-1"
+            dark
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
         >
             <v-spacer></v-spacer>
             <span

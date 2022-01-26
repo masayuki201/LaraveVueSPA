@@ -1,9 +1,9 @@
 <template>
     <v-card>
         <v-toolbar
-            class="text-center"
-            cols="12"
-            color="blue lighten-1"
+            dark
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+            max-height="60"
         >
             <h2
                 class="white--text"
@@ -12,7 +12,7 @@
             </h2>
             <v-spacer></v-spacer>
             <v-btn
-                class="btn white--text"
+                class="hbtn white--text"
                 color="#F57C00"
                 elevation="10"
                 :to="{name: 'task.list'}"
@@ -20,7 +20,7 @@
                 一覧
             </v-btn>
             <v-btn
-                class="btn white--text"
+                class="hbtn white--text"
                 color="#F57C00"
                 elevation="10"
                 :to="{name: 'task.create'}"
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style>
-.btn{
+.hbtn{
     margin: 0px 5px 0px 5px;
 }
 </style>
