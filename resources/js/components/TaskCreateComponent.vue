@@ -1,25 +1,32 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-6">
-                <form v-on:submit.prevent="submit">
+    <v-container>
+        <div class="justify-content-center">
+            <form v-on:submit.prevent="submit">
+                <v-card class="col-sm-6">
                     <div class="form-group row">
-                        <label for="title" class="col-sm-3 col-form-label">Title</label>
+                        <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                         <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
                     </div>
                     <div class="form-group row">
-                        <label for="title" class="col-sm-3 col-form-label">Content</label>
+                        <label for="title" class="col-sm-3 col-form-label">内容</label>
                         <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content">
                     </div>
                     <div class="form-group row">
-                        <label for="title" class="col-sm-3 col-form-label">Person In Charge</label>
+                        <label for="title" class="col-sm-3 col-form-label">担当者</label>
                         <input type="text" class="col-sm-9 form-control" id="person-in-charge" v-model="task.person_in_charge">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+                    <v-btn
+                        type="submit"
+                        class="btn white--text"
+                        color="#F57C00"
+                        elevation="10"
+                    >
+                        追加する
+                    </v-btn>
+                </v-card>
+            </form>
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
