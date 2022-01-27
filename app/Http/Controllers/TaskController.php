@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
+use Request;
 
 class TaskController extends Controller
 {
@@ -12,8 +13,9 @@ class TaskController extends Controller
         return Task::all();
     }
 
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
+        $validated = $request->validated();
         return Task::create($request->all());
     }
 
