@@ -24,10 +24,10 @@ class TaskController extends Controller
         return $task;
     }
 
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
+        $validated = $request->validated();
         $task->update($request->all());
-
         return $task;
     }
 
