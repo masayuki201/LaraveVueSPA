@@ -47,7 +47,10 @@ export default {
             axios.post('/api/tasks', this.task)
                 .then((res) => {
                     this.$router.push({name: 'task.list'});
-                });
+                })
+            .catch(e => {
+                console.log(e.response.data.errors)
+            });
         }
     }
 }
