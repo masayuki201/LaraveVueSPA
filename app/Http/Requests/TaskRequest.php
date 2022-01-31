@@ -35,7 +35,7 @@ class TaskRequest extends FormRequest
         return [
             'title'             => '「タイトル」',
             'content'           => '「内容」',
-            'person_in_charge'  => '担当者',
+            'person_in_charge'  => '「担当者」',
         ];
     }
 

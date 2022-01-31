@@ -59,8 +59,20 @@ export default {
         submit() {
             axios.put('/api/tasks/' + this.taskId, this.task)
                 .then((res) => {
-                    this.$router.push({name: 'task.list'})
-                });
+                    this.$router.push({name: 'task.list'});
+                })
+            .catch(e => {
+                console.log(e.response.data.errors)
+                if(e.response.data.errors.title){
+                    alert(e.response.data.errors.title)
+                }
+                if(e.response.data.errors.content){
+                    alert(e.response.data.errors.content)
+                }
+                if(e.response.data.errors.person_in_charge){
+                    alert(e.response.data.errors.person_in_charge)
+                }
+            })
         }
     },
     mounted() {
