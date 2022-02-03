@@ -4,6 +4,15 @@
         width="100%"
         max-width="2000"
     >
+        <search-area
+            @search="searchTasks($event)"
+        >
+        </search-area>
+
+        <v-layout wrap>
+            <v-flex sm4 pa-2>{{from}}〜{{to}}件 / {{total}}件</v-flex>
+        </v-layout>
+
         <v-container>
             <div class="justify-content-center">
                 <div class="table table-hover">
@@ -58,33 +67,85 @@
                     </tbody>
                 </div>
             </div>
+            <!--ページネーション-->
+            <template>
+                <div class="text-center">
+                    <v-container>
+                        <v-row justify="center">
+                            <v-col cols="8">
+                                <v-container class="max-width">
+                                    <v-pagination
+                                        v-model="page"
+                                        class="my-4"
+                                        :length="length"
+                                        :total-visible="10"
+                                    >
+                                    </v-pagination>
+                                </v-container>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </div>
+            </template>
         </v-container>
     </v-list>
 </template>
 
  <script>
+ import SearchArea from "../components/SearchArea.vue";
+
      export default {
-         data: function () {
+         data() {
              return {
-                 tasks: []
-             }
+                 tasks: [],
+                 page: 1,
+                 length: 0,
+                 urlParams: "",
+                 from: "",
+                 to: "",
+                 total: "",
+             };
          },
          methods: {
              getTasks() {
                  axios.get('/api/tasks')
                      .then((res) => {
-                        this.tasks = res.data;
-                    });
+                         this.tasks = res.data;
+                     });
              },
              deleteTask(id) {
                  axios.delete('/api/tasks/' + id)
                      .then((res) => {
                          this.getTasks();
                      });
+             },
+             async searchTasks(params) {
+                 this.urlParams = params;
+                 {
+                     let url = "/api/tasks?page=" + this.page + "&" + this.urlParams;
+                     const response = await axios.get(url);
+
+                     let tasks = response.data.data;
+                     this.tasks = tasks;
+                     this.length = response.data.last_page;
+                     this.from = response.data.from;
+                     this.to = response.data.to;
+                     this.total = response.data.total;
+                 }
              }
          },
          mounted() {
              this.getTasks();
+             // this.searchTasks(this.urlParams);
+         },
+         watch: {
+             page: function (newPage) {
+                 this.searchTasks(this.urlParams);
+             }
+         },
+         components: {
+             // Task,
+             SearchArea
          }
-     }
+     };
  </script>

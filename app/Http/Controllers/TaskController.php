@@ -8,8 +8,22 @@ use Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+//        $per_page = 5;
+//        $input = $request->all();
+//
+//        $tasks = Task::select('id', 'title', 'content', 'person_in_charge');
+//        if (!empty($input['person_in_charge'])) {
+//            $tasks = $tasks->where('person_in_charge', $input['person_in_charge']);
+//        }
+//        if (!empty($input['title'])) {
+//            $tasks = $tasks->where('title', 'LIKE', "%{$input['title']}%");
+//        }
+//        $tasks = $tasks->paginate($per_page);
+//
+//        return response()->json($tasks);
+
         return Task::all();
     }
 
