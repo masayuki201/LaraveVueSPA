@@ -12,12 +12,6 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
-            Task::create([
-                'title' => 'title' . $i,
-                'content' => 'content' . $i,
-                'person_in_charge' => 'person_in_charge' . $i,
-            ]);
-        }
+        factory(Task::class, 100)->create();
     }
 }
