@@ -4,6 +4,16 @@
         width="100%"
         max-width="2000"
     >
+        <!--検索エリア-->
+        <search-area
+            @search="searchTasks($event)"
+        />
+
+        <!--件数表示-->
+        <v-layout wrap>
+            <v-flex sm4 pa-2>{{from}}〜{{to}}件 / {{total}}件</v-flex>
+        </v-layout>
+
         <v-container>
             <div class="justify-content-center">
                 <div class="table table-hover">
@@ -58,33 +68,80 @@
                     </tbody>
                 </div>
             </div>
+            <!--ページネーション-->
+            <template>
+                <div class="text-center">
+                    <v-container>
+                        <v-row justify="center">
+                            <v-col cols="8">
+                                <v-container class="max-width">
+                                    <v-pagination
+                                        v-model="page"
+                                        :length="length"
+                                        :total-visible="10"
+                                    />
+                                </v-container>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </div>
+            </template>
         </v-container>
     </v-list>
 </template>
 
  <script>
-     export default {
-         data: function () {
-             return {
-                 tasks: []
-             }
+ import SearchArea from "../components/SearchArea.vue";
+
+ export default {
+     data() {
+         return {
+             tasks: [],       //Task一覧データ
+             page: 1,   　    //表示中のページ（v-paginationにバインド）
+             length: 0,　　　  //ページネーションのリンクの数（v-paginationのprops）
+             urlParams: "",   //検索パラメータ
+             from: "",        //Task一覧の開始
+             to: "",          //Task一覧の終了
+             total: "",       //件数
+         };
+     },
+     methods: {
+         //検索ボタンをクリックすると呼ばれる
+         async searchTasks(params) {
+             //検索パラメータをURLに付与してapiを叩く
+             this.urlParams = params;
+             let url = "/api/tasks?page=" + this.page + "&" + this.urlParams;
+             const response = await axios.get(url);
+             //戻り値をデータに代入すれば表示が変わる
+             let tasks = response.data.data;
+             this.tasks = tasks;
+             this.length = response.data.last_page;
+             this.from = response.data.from;
+             this.to = response.data.to;
+             this.total = response.data.total;
          },
-         methods: {
-             getTasks() {
-                 axios.get('/api/tasks')
-                     .then((res) => {
-                        this.tasks = res.data;
-                    });
-             },
-             deleteTask(id) {
-                 axios.delete('/api/tasks/' + id)
-                     .then((res) => {
-                         this.getTasks();
-                     });
-             }
+         //Task削除
+         deleteTask(id) {
+             axios.delete('/api/tasks/' + id)
+                 .then((res) => {
+                     this.searchTasks();
+                 });
          },
-         mounted() {
-             this.getTasks();
+     },
+     mounted() {
+         //初期表示
+         this.searchTasks(this.urlParams);
+     },
+     watch: {
+         //ページネーションのリンクをクリックすると、pageが変わる。
+         //pageを監視、変更されたらsearchTasksを実行
+         page: function (newPage) {
+             this.searchTasks(this.urlParams);
          }
+     },
+     components: {
+         //検索コンポーネント
+         SearchArea
      }
+ };
  </script>

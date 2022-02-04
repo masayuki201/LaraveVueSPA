@@ -8,6 +8,7 @@ import TaskCreateComponent from "./components/TaskCreateComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
 import TaskEditComponent from "./components/TaskEditComponent";
 import FooterComponent from "./components/FooterComponent";
+import '@mdi/font/css/materialdesignicons.css';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
