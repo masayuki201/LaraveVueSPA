@@ -14,9 +14,10 @@ class TaskController extends Controller
         $per_page = 5;      //1ページあたりの件数
         $input = $request->all();
 
+        //検索機能
         $tasks = Task::select('id', 'title', 'content', 'person_in_charge');
         if (!empty($input['person_in_charge'])) {
-            $tasks = $tasks->where('person_in_charge', $input['person_in_charge']);
+            $tasks = $tasks->where('person_in_charge','LIKE', "%{$input['person_in_charge']}%");
         }
         if (!empty($input['title'])) {
             $tasks = $tasks->where('title', 'LIKE', "%{$input['title']}%");
