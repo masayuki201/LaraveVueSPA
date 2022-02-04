@@ -4,11 +4,12 @@
         width="100%"
         max-width="2000"
     >
+        <!--検索エリア-->
         <search-area
             @search="searchTasks($event)"
-        >
-        </search-area>
+        />
 
+        <!--件数表示-->
         <v-layout wrap>
             <v-flex sm4 pa-2>{{from}}〜{{to}}件 / {{total}}件</v-flex>
         </v-layout>
@@ -76,11 +77,9 @@
                                 <v-container class="max-width">
                                     <v-pagination
                                         v-model="page"
-                                        class="my-4"
                                         :length="length"
                                         :total-visible="10"
-                                    >
-                                    </v-pagination>
+                                    />
                                 </v-container>
                             </v-col>
                         </v-row>
@@ -94,58 +93,55 @@
  <script>
  import SearchArea from "../components/SearchArea.vue";
 
-     export default {
-         data() {
-             return {
-                 tasks: [],
-                 page: 1,
-                 length: 0,
-                 urlParams: "",
-                 from: "",
-                 to: "",
-                 total: "",
-             };
+ export default {
+     data() {
+         return {
+             tasks: [],       //Task一覧データ
+             page: 1,   　    //表示中のページ（v-paginationにバインド）
+             length: 0,　　　  //ページネーションのリンクの数（v-paginationのprops）
+             urlParams: "",   //検索パラメータ
+             from: "",        //Task一覧の開始
+             to: "",          //Task一覧の終了
+             total: "",       //件数
+         };
+     },
+     methods: {
+         //検索ボタンをクリックすると呼ばれる
+         async searchTasks(params) {
+             //検索パラメータをURLに付与してapiを叩く
+             this.urlParams = params;
+             let url = "/api/tasks?page=" + this.page + "&" + this.urlParams;
+             const response = await axios.get(url);
+             //戻り値をデータに代入すれば表示が変わる
+             let tasks = response.data.data;
+             this.tasks = tasks;
+             this.length = response.data.last_page;
+             this.from = response.data.from;
+             this.to = response.data.to;
+             this.total = response.data.total;
          },
-         methods: {
-             getTasks() {
-                 axios.get('/api/tasks')
-                     .then((res) => {
-                         this.tasks = res.data;
-                     });
-             },
-             deleteTask(id) {
-                 axios.delete('/api/tasks/' + id)
-                     .then((res) => {
-                         this.getTasks();
-                     });
-             },
-             async searchTasks(params) {
-                 this.urlParams = params;
-                 {
-                     let url = "/api/tasks?page=" + this.page + "&" + this.urlParams;
-                     const response = await axios.get(url);
-
-                     let tasks = response.data.data;
-                     this.tasks = tasks;
-                     this.length = response.data.last_page;
-                     this.from = response.data.from;
-                     this.to = response.data.to;
-                     this.total = response.data.total;
-                 }
-             }
+         //Task削除
+         deleteTask(id) {
+             axios.delete('/api/tasks/' + id)
+                 .then((res) => {
+                     this.searchTasks();
+                 });
          },
-         mounted() {
-             this.getTasks();
-             // this.searchTasks(this.urlParams);
-         },
-         watch: {
-             page: function (newPage) {
-                 this.searchTasks(this.urlParams);
-             }
-         },
-         components: {
-             // Task,
-             SearchArea
+     },
+     mounted() {
+         //初期表示
+         this.searchTasks(this.urlParams);
+     },
+     watch: {
+         //ページネーションのリンクをクリックすると、pageが変わる。
+         //pageを監視、変更されたらsearchTasksを実行
+         page: function (newPage) {
+             this.searchTasks(this.urlParams);
          }
-     };
+     },
+     components: {
+         //検索コンポーネント
+         SearchArea
+     }
+ };
  </script>

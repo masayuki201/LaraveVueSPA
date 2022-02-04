@@ -9,8 +9,6 @@ import TaskShowComponent from "./components/TaskShowComponent";
 import TaskEditComponent from "./components/TaskEditComponent";
 import FooterComponent from "./components/FooterComponent";
 import '@mdi/font/css/materialdesignicons.css';
-// import "./bootstrap";
-// import store from "./store";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -77,7 +75,6 @@ Vue.component('footer-component', FooterComponent);
 const app = new Vue({
     el: '#app',
     router,
-    // store,
     vuetify: new Vuetify(),
 });
 
